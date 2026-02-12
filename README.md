@@ -64,6 +64,37 @@ npx tsx apps/track1-cli/src/test_run.ts
 - `.cache/<fileKey>_<nodeId>.png` — 렌더링 이미지 (4x scale)
 - 콘솔에 Standard IR JSON 출력
 
+## LLM 코드 생성 (Phase 2)
+
+### 1. 환경 변수 추가
+
+`.env`에 OpenAI 설정 추가:
+
+```
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
+OPENAI_BASE_URL=https://api.openai.com/v1   # 회사 네트워크 사용 시 변경
+OPENAI_MODEL=gpt-4o-mini                     # 기본값, gpt-4o 등 변경 가능
+```
+
+### 2. 실행
+
+```bash
+npx tsx apps/track1-cli/src/generate.ts "310:5549"
+```
+
+출력:
+```
+[1/3] Fetching & parsing Figma node...
+[2/3] Generating code via LLM (gpt-4o-mini)...
+[3/3] Saving output...
+
+Model: gpt-4o-mini-2024-07-18
+Tokens: 23528 prompt + 1958 completion = 25486 total
+Output: .output/310_5549.html
+```
+
+생성된 `.output/*.html`을 브라우저에서 열어 확인.
+
 ## 테스트
 
 ```bash
