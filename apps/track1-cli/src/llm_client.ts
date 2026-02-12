@@ -2,6 +2,7 @@ import OpenAI from "openai";
 
 export interface LLMClientOptions {
   apiKey: string;
+  baseURL?: string;
   model?: string;
 }
 
@@ -22,6 +23,7 @@ export class LLMClient {
   constructor(options: LLMClientOptions) {
     this.client = new OpenAI({
       apiKey: options.apiKey,
+      baseURL: options.baseURL,
       maxRetries: 3,
       timeout: 120_000,
     });

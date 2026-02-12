@@ -27,10 +27,11 @@ if (!nodeId) {
 }
 
 const model = process.env.OPENAI_MODEL ?? "gpt-4o-mini";
+const baseURL = process.env.OPENAI_BASE_URL;
 
 const generator = new Generator({
   figma: { accessToken, fileKey },
-  llm: { apiKey: openaiKey, model },
+  llm: { apiKey: openaiKey, baseURL, model },
 });
 
 console.log(`\n[1/3] Fetching & parsing Figma node...`);
