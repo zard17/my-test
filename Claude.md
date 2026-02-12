@@ -1,0 +1,5 @@
+- Project Context: "이 프로젝트는 Figma 데이터를 Tizen 코드로 바꾸는 F2C 엔진이다."
+- Coding Standard: "모든 코드는 TypeScript로 작성하며, packages/core는 환경 의존성이 없어야 한다."
+- session 시작 시 Plan_track_1.md와 docs/High-level-spec.md와 읽어서 흐름 파악
+- session 종료 시 다음 session에 넘길 내용 Handover.md에 정리. 기존 Handover.md는 지운다.
+- 새로운 feature 시작 시 branch 생성, feature 완료 시 커밋
