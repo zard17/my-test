@@ -8,6 +8,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@f2c/core": "0.1.0",
+    "@f2c/common": "0.1.0",
     "dotenv": "^16.4.0"
   },
   "devDependencies": {
