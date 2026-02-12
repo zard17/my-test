@@ -1,4 +1,4 @@
-import type { SerializedIR } from "./ir_serializer.js";
+   import type { SerializedIR } from "./ir_serializer.js";
 
 export function buildSystemPrompt(): string {
   return `You are an expert front-end developer. You convert a design IR (Intermediate Representation) JSON into a self-contained HTML file with inline styles.
@@ -8,11 +8,10 @@ export function buildSystemPrompt(): string {
 1. **All numeric values are final px values.** Use them directly. Do NOT perform any arithmetic.
 
 2. **Layout mapping:**
+   - \`display: "flex"\` → \`display: flex\`
+   - \`display: "block"\` → \`position: relative\` container. Its children use \`position: absolute; top: 0; left: 0\` and stack by z-order (last child on top).
    - \`direction: "horizontal"\` → \`flex-direction: row\`
    - \`direction: "vertical"\` → \`flex-direction: column\`
-   - \`display: "flex"\` → \`display: flex\`
-   - \`display: "block"\` → \`display: block\` (no auto-layout, children stack vertically)
-   - \`display: "none"\` → \`display: none\`
 
 3. **Sizing modes:**
    - \`widthMode: "fixed"\` → use \`width\` value in px
@@ -30,11 +29,15 @@ export function buildSystemPrompt(): string {
    - \`align\` → \`align-items: {value}\`
    - \`justify\` → \`justify-content: {value}\`
 
-5. **Text nodes:** When a node has \`content.text\`, render it as a text element.
+5. **Hidden nodes:** If \`visibility\` is \`"hidden"\`, **skip the node and all its children entirely.** Do not render any HTML for it.
+
+6. **Text nodes:** When a node has \`content.text\`, render it as a text element.
    - The node's \`style.backgroundColor\` is the **text color** (CSS \`color\`), not a background.
    - Apply typography: \`font-family\`, \`font-size\`, \`font-weight\`, \`line-height\`, \`letter-spacing\`.
 
-6. **Output format:**
+7. **Decorative overlays:** Skip nodes that have \`opacity\` below 0.2 and no text content — they are visual overlays, not structural.
+
+8. **Output format:**
    - Start with \`<!DOCTYPE html>\`
    - Self-contained HTML with all styles inline (no external CSS, no <style> blocks)
    - Use semantic HTML where appropriate (div for containers, span/p for text)
