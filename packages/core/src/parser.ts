@@ -87,7 +87,7 @@ export class F2CParser {
     const gap = node.itemSpacing ?? 0;
 
     return {
-      display: node.layoutMode ? "flex" : "none",
+      display: node.layoutMode ? "flex" : "block",
       direction,
       align: this.mapAlign(node.counterAxisAlignItems),
       justify: this.mapJustify(node.primaryAxisAlignItems),

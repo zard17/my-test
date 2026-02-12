@@ -11,6 +11,7 @@ export function buildSystemPrompt(): string {
    - \`direction: "horizontal"\` → \`flex-direction: row\`
    - \`direction: "vertical"\` → \`flex-direction: column\`
    - \`display: "flex"\` → \`display: flex\`
+   - \`display: "block"\` → \`display: block\` (no auto-layout, children stack vertically)
    - \`display: "none"\` → \`display: none\`
 
 3. **Sizing modes:**

@@ -44,7 +44,7 @@ export interface SerializedTypography {
 }
 
 export interface SerializedLayout {
-  display: "flex" | "none";
+  display: "flex" | "block" | "none";
   direction: "horizontal" | "vertical";
   align: string;
   justify: string;
